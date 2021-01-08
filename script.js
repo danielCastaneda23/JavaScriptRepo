@@ -12,10 +12,16 @@ var animal =prompt("Digite Numero");
 document.write(Number(animal)+numero)
 */
 
-var Numero=500;
+let TypeNumber=Number(prompt("Digite El Numero para saber si es par o impar"));
+var Result;
 
-if(Numero<500){
-    alert("EsMenorA500")
-}else{
-    alert("NoesMenor")
+Result=TypeNumber%2;
+
+if(Result!=0){
+    alert("El Numero "+TypeNumber+" es Impar");
+    console.log("El Numero "+TypeNumber+" es Impar");
+}
+else{
+    alert("El Numero "+TypeNumber+" Es Par");
+    console.log("El Numero "+TypeNumber+" es Par");
 }
