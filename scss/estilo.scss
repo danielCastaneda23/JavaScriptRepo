@@ -1,2 +1,10 @@
 // npm run watch-css PARA INICIAR SASS
-
+.card{
+    color: white;
+    background-color: rgb(63, 82, 89);
+    .btn{
+        background-color: white;
+        color: black;
+        border-color: white;
+    }
+}

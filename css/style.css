@@ -1,0 +1,7 @@
+.card {
+  color: white;
+  background-color: #3f5259; }
+  .card .btn {
+    background-color: white;
+    color: black;
+    border-color: white; }

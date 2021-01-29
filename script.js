@@ -75,38 +75,84 @@ for(let i=0;i<20;i++){
 //     return PrecioTotal
 // }
 
-class Inventario{
-    constructor(PrecioProducto,NumeroUnidades,NombreProducto){
-        this.Nombre=NombreProducto
-        this.Precio=PrecioProducto;
-        this.Unidades=NumeroUnidades;
+// class Inventario{
+//     constructor(PrecioProducto,NumeroUnidades,NombreProducto){
+//         this.Nombre=NombreProducto
+//         this.Precio=PrecioProducto;
+//         this.Unidades=NumeroUnidades;
+//     }
+//     PrecioTotal() {
+//         if (this.Nombre=="CAMA"){
+//             Total=(Math.pow((this.Precio),2))*this.Unidades;
+//         }
+//         else if(this.Nombre=="SILLA"){
+//             Total=this.Precio*this.Unidades;
+//         }
+//         else if(this.Nombre=="CAMINADOR"){
+//             Total=(this.Precio/2)*this.Unidades;
+//         }
+//         return Total;
+//     }
+//     Mostrartotal(){
+//         const ValorFinal=this.PrecioTotal();
+//         document.getElementById("Total").innerHTML=`
+//             <b>$ ${ValorFinal}</b>`;
+//         alert("El valor a pagar es $"+ValorFinal);
+//     }
+// }
+// function BotonMostrar() {
+//     NombreUnidad=String(prompt("Que Desea comprar puede elegir entre ('CAMA','SILLA','CAMINADOR')"))
+//     PrecioDeUnidad=Number(prompt("Digite El precio De cada unidad del producto"));
+//     NumeroDeUnidades=Number(prompt("Digite El Numero De Unidades Que Desea Comprar"));
+//     let UnidadDeInventario= new Inventario(PrecioDeUnidad,NumeroDeUnidades,NombreUnidad);
+//     UnidadDeInventario.Mostrartotal()
+// }
+
+class Tarjeta{
+    constructor(NumeroImagen=[],NombreTitulo=[],NombreDescripcion=[]){
+        this.Imagen=NumeroImagen;
+        this.Titulo=NombreTitulo;
+        this.Descripcion=NombreDescripcion;
     }
-    PrecioTotal() {
-        if (this.Nombre=="CAMA"){
-            Total=(Math.pow((this.Precio),2))*this.Unidades;
+
+    Mostrar(){
+        let Contador=``;
+        for(let i=0;i<this.Imagen.length;i++){
+        Contador+=`
+        <div class="col-lg-4 my-2 ">
+            <div class="card" style="width: 18rem; border-radius: 10px; border-width: 10px; border-color: blue;">
+                <img class="card-img-top" src="${this.Imagen[i]}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">${this.Titulo[i]}</h5>
+                    <p class="card-text">${this.Descripcion[i]}</p>
+                    <a href="#" class="btn btn-primary">Comprar</a>
+                </div>
+            </div>
+        </div>
+            `;
         }
-        else if(this.Nombre=="SILLA"){
-            Total=this.Precio*this.Unidades;
-        }
-        else if(this.Nombre=="CAMINADOR"){
-            Total=(this.Precio/2)*this.Unidades;
-        }
-        return Total;
+        document.getElementById("Total").innerHTML=Contador;
     }
-    Mostrartotal(){
-        const ValorFinal=this.PrecioTotal();
-        document.getElementById("Total").innerHTML=`
-            <b>$ ${ValorFinal}</b>`;
-        alert("El valor a pagar es $"+ValorFinal);
-    }
+    
 }
-function BotonMostrar() {
-    NombreUnidad=String(prompt("Que Desea comprar puede elegir entre ('CAMA','SILLA','CAMINADOR')"))
-    PrecioDeUnidad=Number(prompt("Digite El precio De cada unidad del producto"));
-    NumeroDeUnidades=Number(prompt("Digite El Numero De Unidades Que Desea Comprar"));
-    let UnidadDeInventario= new Inventario(PrecioDeUnidad,NumeroDeUnidades,NombreUnidad);
-    UnidadDeInventario.Mostrartotal()
-}
+
+const Imagenes=["images/CardImages/Imagen8.JPG","images/CardImages/Imagen9.JPG","images/CardImages/Imagen10.JPG","images/CardImages/Imagen11.JPG","images/CardImages/Imagen12.JPG","images/CardImages/Imagen13.JPG","images/CardImages/Imagen14.JPG","images/CardImages/Imagen15.JPG","images/CardImages/Imagen16.JPG","images/CardImages/Imagen17.JPG"];
+const Titulos=["CAMA HOSPITALARIA TIPOA","CAMA HOSPITALARIA TIPOB","CAMA HOSPITALARIA TIPOC","CAMA HOSPITALARIA TIPOD","CAMA HOSPITALARIA TIPOE","CAMA HOSPITALARIA TIPOF","CAMA HOSPITALARIA TIPOG","SILLA DE RUEDAS TIPO A","SILLA DE RUEDAS TIPO A","SILLA DE RUEDAS TIPO A"];
+const Descripciones= ["Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  "
+,"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
+"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
+"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
+"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
+"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
+"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
+"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
+"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
+"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  "];
+
+Tarjetas=new Tarjeta(Imagenes,Titulos,Descripciones);
+Tarjetas.Mostrar()
+
+
 
 
 
