@@ -108,48 +108,48 @@ for(let i=0;i<20;i++){
 //     UnidadDeInventario.Mostrartotal()
 // }
 
-class Tarjeta{
-    constructor(NumeroImagen=[],NombreTitulo=[],NombreDescripcion=[]){
-        this.Imagen=NumeroImagen;
-        this.Titulo=NombreTitulo;
-        this.Descripcion=NombreDescripcion;
+class Tarjeta {
+    constructor(NumeroImagen = [], NombreTitulo = [], NombreDescripcion = []) {
+        this.Imagen = NumeroImagen;
+        this.Titulo = NombreTitulo;
+        this.Descripcion = NombreDescripcion;
     }
 
-    Mostrar(){
-        let Contador=``;
-        for(let i=0;i<this.Imagen.length;i++){
-        Contador+=`
-        <div class="col-lg-4 my-2 ">
-            <div class="card" style="width: 18rem; border-radius: 10px; border-width: 10px; border-color: blue;">
-                <img class="card-img-top" src="${this.Imagen[i]}" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">${this.Titulo[i]}</h5>
-                    <p class="card-text">${this.Descripcion[i]}</p>
-                    <a href="#" class="btn btn-primary">Comprar</a>
+    Mostrar() {
+        let Contador = ``;
+        for (let i = 0; i < this.Imagen.length; i++) {
+            Contador += `
+            <div class="col-3 py-3">
+                <div class="card h-100" style="width: 18rem; border-radius: 10px; border-width: 10px; border-color: #41AADA;">
+                    <img class="card-img-top" src="${this.Imagen[i]}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">${this.Titulo[i]}</h5>
+                        <p class="card-text">${this.Descripcion[i]}</p>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
                 </div>
             </div>
-        </div>
             `;
         }
-        document.getElementById("Total").innerHTML=Contador;
+        document.getElementById("Total").innerHTML = Contador;
     }
-    
+
 }
 
-const Imagenes=["images/CardImages/Imagen8.JPG","images/CardImages/Imagen9.JPG","images/CardImages/Imagen10.JPG","images/CardImages/Imagen11.JPG","images/CardImages/Imagen12.JPG","images/CardImages/Imagen13.JPG","images/CardImages/Imagen14.JPG","images/CardImages/Imagen15.JPG","images/CardImages/Imagen16.JPG","images/CardImages/Imagen17.JPG"];
-const Titulos=["CAMA HOSPITALARIA TIPOA","CAMA HOSPITALARIA TIPOB","CAMA HOSPITALARIA TIPOC","CAMA HOSPITALARIA TIPOD","CAMA HOSPITALARIA TIPOE","CAMA HOSPITALARIA TIPOF","CAMA HOSPITALARIA TIPOG","SILLA DE RUEDAS TIPO A","SILLA DE RUEDAS TIPO A","SILLA DE RUEDAS TIPO A"];
-const Descripciones= ["Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  "
-,"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
-"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
-"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
-"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
-"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
-"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
-"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
-"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
-"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  "];
+const Imagenes = ["images/CardImages/Imagen8.JPG", "images/CardImages/Imagen9.JPG", "images/CardImages/Imagen10.JPG", "images/CardImages/Imagen11.JPG", "images/CardImages/Imagen12.JPG", "images/CardImages/Imagen13.JPG", "images/CardImages/Imagen14.JPG", "images/CardImages/Imagen15.JPG", "images/CardImages/Imagen16.JPG", "images/CardImages/Imagen17.JPG"];
+const Titulos = ["CAMA HOSPITALARIA TIPOA", "CAMA HOSPITALARIA TIPOB", "CAMA HOSPITALARIA TIPOC", "CAMA HOSPITALARIA TIPOD", "CAMA HOSPITALARIA TIPOE", "CAMA HOSPITALARIA TIPOF", "CAMA HOSPITALARIA TIPOG", "SILLA DE RUEDAS TIPO A", "SILLA DE RUEDAS TIPO A", "SILLA DE RUEDAS TIPO A"];
+const Descripciones = ["Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  "
+    , "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
+    "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
+    "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
+    "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
+    "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
+    "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
+    "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
+    "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
+    "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  "];
 
-Tarjetas=new Tarjeta(Imagenes,Titulos,Descripciones);
+Tarjetas = new Tarjeta(Imagenes, Titulos, Descripciones);
 Tarjetas.Mostrar()
 
 
