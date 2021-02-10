@@ -12,6 +12,7 @@ $enable-negative-margins: true;
         max-height: 180px;
     }
 }
+
 .Globos{
     border: 4px solid;
     border-radius: 100%;
@@ -41,6 +42,9 @@ $enable-negative-margins: true;
     color: white;
     background-color: rgb(59, 84, 91);
     
+}
+.Location{
+    bottom: 1px;
 }
 // .mt-n1 {
 //     margin-top: -5.5rem !important;

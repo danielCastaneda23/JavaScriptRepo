@@ -125,7 +125,7 @@ class Tarjeta {
                     <div class="card-body">
                         <h5 class="card-title">${this.Titulo[i]}</h5>
                         <p class="card-text">${this.Descripcion[i]}</p>
-                        <a href="#" class="btn btn-primary">Comprar</a>
+                        <button type="button" class="btn btn-dark my-5" onclick="MostrarCarrito('${this.Imagen[i]}')">Agregar Carrito</button>
                     </div>
                 </div>
             </div>
@@ -149,9 +149,26 @@ const Descripciones = ["Lorem ipsum dolor, sit amet consectetur adipisicing elit
     "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
     "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  "];
 
+let acumulador=[];
 Tarjetas = new Tarjeta(Imagenes, Titulos, Descripciones);
 Tarjetas.Mostrar()
 
+function MostrarCarrito(ImagenParaCarro) {
+    aux=``
+    acumulador.push(ImagenParaCarro);
+    if(acumulador.length<=12){
+        for(let i=0;i<acumulador.length;i++){
+        aux+=`
+            <img src="${acumulador[i]}" alt=":)" width="122px" height="145px" class="px-1 pt-3"style="border-radius: 20%; " >
+        `
+        }
+        aux+=`<div class="row mr-5 justify-content-end  h5"> Numero De Elementos En Carrito: ${acumulador.length} </div>`
+        document.getElementById("Total2").innerHTML=aux;
+    }
+    
+    console.log(acumulador);
+}
+{/* <img src="${acumulador[i]}" alt=:)  "> */}
 
 
 
