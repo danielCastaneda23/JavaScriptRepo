@@ -124,8 +124,8 @@ class Tarjeta {
                     <img class="card-img-top" src="${this.Imagen[i]}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">${this.Titulo[i]}</h5>
-                        <p class="card-text">${this.Descripcion[i]}</p>
-                        <button type="button" class="btn btn-dark my-5" onclick="MostrarCarrito('${this.Imagen[i]}')">Agregar Carrito</button>
+                        <p class="card-text h6">${this.Descripcion[i]}</p>
+                        <button type="button" class="btn btn-dark mt-2" onclick="MostrarCarrito('${this.Imagen[i]}')">Agregar Carrito</button>
                     </div>
                 </div>
             </div>
@@ -150,22 +150,38 @@ const Descripciones = ["Lorem ipsum dolor, sit amet consectetur adipisicing elit
     "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  "];
 
 let acumulador=[];
+
 Tarjetas = new Tarjeta(Imagenes, Titulos, Descripciones);
 Tarjetas.Mostrar()
 
+if (localStorage.getItem('Carrito')!=null){
+    acumulador=JSON.parse(localStorage.getItem('Carrito'));
+    aux=`<div class="col-12 text-right pr-5 mr-5 h5"> Numero De Elementos En Carrito: ${(acumulador.length)} </div>`
+    document.getElementById("Total2").innerHTML=aux;
+}
 function MostrarCarrito(ImagenParaCarro) {
-    aux=``
     acumulador.push(ImagenParaCarro);
     if(acumulador.length<=12){
+        aux=`<div class="col-12 text-right pr-5 mr-5 h5"> Numero De Elementos En Carrito: ${(acumulador.length)} </div>`
         for(let i=0;i<acumulador.length;i++){
         aux+=`
-            <img src="${acumulador[i]}" alt=":)" width="122px" height="145px" class="px-1 pt-3"style="border-radius: 20%; " >
+        <div class="col-1 px-0">
+            <div class="row mx-0">
+                <img src="${acumulador[i]}" alt=":)" width="122px" height="120px" class="px-1"style="border-radius: 20%; " >
+            </div>
+            <div class="row mx-0">
+                lorem
+            </div>
+        </div>
         `
         }
-        aux+=`<div class="row mr-5 justify-content-end  h5"> Numero De Elementos En Carrito: ${acumulador.length} </div>`
+        
         document.getElementById("Total2").innerHTML=aux;
+        localStorage.setItem('Carrito',JSON.stringify(acumulador))
     }
-    
+    else{
+        localStorage.removeItem('Carrito')
+    }
     console.log(acumulador);
 }
 {/* <img src="${acumulador[i]}" alt=:)  "> */}

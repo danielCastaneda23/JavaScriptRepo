@@ -8,11 +8,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
-
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
 
 </head>
 
-<body>
+<body style="font-family: Comfortaa; font-style: normal;">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -41,9 +42,6 @@
             <div class="col-12  text-center">
                 <img src="images/Colcamas.jpg" alt=":)" width="40%" height="auto">
             </div>
-
-
-
             <div class="col-12 text-center">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
@@ -127,7 +125,7 @@
                         laborum fugit saepe distinctio obcaecati, ad delectus voluptatem repellat beatae sit sint cum
                         doloremque facilis expedita, eum recusandae officia corrupti.</div>
                     <div class="row mx-0 justify-content-center"><button class="btn-dark h3 px-5 py-2">TIENDA DE
-                            PRODCUTOS</button></div>
+                            PRODUCTOS</button></div>
                 </div>
             </div>
             
@@ -159,11 +157,9 @@
             </div>
 
             <div class="row" id="Total"></div>
-            <div class="col-12 text-end">
-                <button type="button" class="btn btn-dark my-5" onclick="MostrarCarrito()">MostrarCarrito</button>
+            <div class="col-12 position-fixed Location px-0 Vertical-Transition"  style="background-color:rgba(82, 195, 254, 0.8);" >
+                <div class="row mx-0" id="Total2"></div>
             </div>
-
-            <div class="col-12 position-fixed Location px-0" id="Total2" style="background-color:rgba(82, 195, 254, 0.8);" ></div>
  
         </div>
     </div>
