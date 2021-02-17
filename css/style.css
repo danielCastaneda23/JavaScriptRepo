@@ -1,6 +1,6 @@
 .card {
   color: white;
-  background-color: #3f5259; }
+  background-color: rgba(33, 137, 181, 0.8); }
   .card .btn {
     background-color: white;
     color: black;
@@ -16,6 +16,10 @@
   .Globos:hover {
     border: 2px solid;
     border-color: #3F5259; }
+
+.Fondo-commerce {
+  background: url(../images/FondoCommerce.jpg);
+  background-size: 100%; }
 
 .Fondo1 {
   background: url(../images/Fondo1.jpg);

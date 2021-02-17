@@ -2,7 +2,8 @@
 $enable-negative-margins: true;
 .card{
     color: white;
-    background-color: rgb(63, 82, 89);
+    // background-color: rgba(64, 82, 89, 1);
+    background-color: rgba(33, 137, 181, 0.8);
     .btn{
         background-color: white;
         color: black;
@@ -22,6 +23,10 @@ $enable-negative-margins: true;
         border: 2px solid;
         border-color:#3F5259;
     }
+}
+.Fondo-commerce{
+    background: url(../images/FondoCommerce.jpg);
+    background-size: 100%;
 }
 .Fondo1{
     background: url(../images/Fondo1.jpg);

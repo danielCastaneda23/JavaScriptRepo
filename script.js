@@ -119,8 +119,8 @@ class Tarjeta {
         let Contador = ``;
         for (let i = 0; i < this.Imagen.length; i++) {
             Contador += `
-            <div class="col-3 py-3">
-                <div class="card h-100" style="width: 18rem; border-radius: 10px; border-width: 10px; border-color: #41AADA;">
+            <div class="col-3 py-3 px-2">
+                <div class="card h-100" style="border-radius: 5px; ;">
                     <img class="card-img-top" src="${this.Imagen[i]}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">${this.Titulo[i]}</h5>
@@ -136,7 +136,7 @@ class Tarjeta {
 
 }
 
-const Imagenes = ["images/CardImages/Imagen8.JPG", "images/CardImages/Imagen9.JPG", "images/CardImages/Imagen10.JPG", "images/CardImages/Imagen11.JPG", "images/CardImages/Imagen12.JPG", "images/CardImages/Imagen13.JPG", "images/CardImages/Imagen14.JPG", "images/CardImages/Imagen15.JPG", "images/CardImages/Imagen16.JPG", "images/CardImages/Imagen17.JPG"];
+const Imagenes = ["../images/CardImages/Imagen8.JPG", "../images/CardImages/Imagen9.JPG", "../images/CardImages/Imagen10.JPG", "../images/CardImages/Imagen11.JPG", "../images/CardImages/Imagen12.JPG", "../images/CardImages/Imagen13.JPG", "../images/CardImages/Imagen14.JPG", "../images/CardImages/Imagen15.JPG", "../images/CardImages/Imagen16.JPG", "../images/CardImages/Imagen17.JPG"];
 const Titulos = ["CAMA HOSPITALARIA TIPOA", "CAMA HOSPITALARIA TIPOB", "CAMA HOSPITALARIA TIPOC", "CAMA HOSPITALARIA TIPOD", "CAMA HOSPITALARIA TIPOE", "CAMA HOSPITALARIA TIPOF", "CAMA HOSPITALARIA TIPOG", "SILLA DE RUEDAS TIPO A", "SILLA DE RUEDAS TIPO A", "SILLA DE RUEDAS TIPO A"];
 const Descripciones = ["Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  "
     , "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
