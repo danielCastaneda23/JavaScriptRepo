@@ -45,6 +45,6 @@
 
 .Vertical-Transition {
   height: 32px;
-  transition: height 2s; }
+  transition: height 1s; }
   .Vertical-Transition:hover {
-    height: 180px; }
+    height: 180px !important; }

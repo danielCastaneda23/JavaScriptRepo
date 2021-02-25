@@ -31,15 +31,17 @@ class Tarjeta {
             aux+=`
             <div class="col-1 px-0">
                 <div class="row mx-0">
-                    <img src="${acumulador[i]}" alt=":)" width="122px" height="120px" class="px-1"style="border-radius: 20%; " >
+                    <img src="${acumulador[i]}" alt=":)" width="122px" height="120px" class="px-1"style="border-radius: 10%; " >
                 </div>
-                <div class="row mx-0">
-                    lorem
+                <div class="row mx-0 pl-2">
+                <button type="button" class="btn btn-link py-0 my-0 px-0 text-dark" onclick="test(${i},${acumulador.length})">Eliminar</button>
+                <button type="button" class="btn btn-link py-0 my-0 px-2 text-dark">Ver</button>
                 </div>
             </div>
             `
             }
             document.getElementById("Total2").innerHTML=aux;
+            document.getElementById("TotalElementos").innerHTML=`(${acumulador.length})`;
             localStorage.setItem('Carrito',JSON.stringify(acumulador))
         }
         else{
@@ -62,6 +64,7 @@ const Descripciones = ["Lorem ipsum dolor, sit amet consectetur adipisicing elit
     "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  "];
 
 let acumulador=[];
+let datos=[];
 
 if (localStorage.getItem('Carrito')!=null){
     acumulador=JSON.parse(localStorage.getItem('Carrito'));
@@ -69,25 +72,67 @@ if (localStorage.getItem('Carrito')!=null){
     for(let i=0;i<acumulador.length;i++){
         aux+=`
         <div class="col-1 px-0">
-            <div class="row mx-0">
-                <img src="${acumulador[i]}" alt=":)" width="122px" height="120px" class="px-1"style="border-radius: 20%; " >
+            <div class="row mx-0 ">
+                <img src="${acumulador[i]}" alt=":)" width="122px" height="120px" class="px-1"style="border-radius: 10%; " >
             </div>
+            <div class="row mx-0 pl-2">
+            <button type="button" class="btn btn-link py-0 my-0 px-0 text-dark" onclick="test(${i},${acumulador.length})">Eliminar</button>
+            <button type="button" class="btn btn-link py-0 my-0 px-2 text-dark">Ver</button>
+            </div>
+        </div>
+        
+        `
+    }
+    document.getElementById("Total2").innerHTML=aux;
+    document.getElementById("TotalElementos").innerHTML=`(${acumulador.length})`;
+}
+
+function test(posicion,tamaño){
+    let aux=` `;
+    console.log(posicion, tamaño);
+    acumulador.splice(posicion,1);
+    if(acumulador.length<=12){
+        aux=`<div class="col-12 text-right pr-5 mr-5 h5"> Numero De Elementos En Carrito: ${(acumulador.length)} </div>`
+        for(let i=0;i<acumulador.length;i++){
+        aux+=`
+        <div class="col-1 px-0">
             <div class="row mx-0">
-                lorem
+                <img src="${acumulador[i]}" alt=":)" width="122px" height="120px" class="px-1"style="border-radius: 10%; " >
+            </div>
+            <div class="row mx-0 pl-2">
+            <button type="button" class="btn btn-link py-0 my-0 px-0 text-dark" onclick="test(${i},${acumulador.length})">Eliminar</button>
+            <button type="button" class="btn btn-link py-0 my-0 px-2 text-dark">Ver</button>
             </div>
         </div>
         `
         }
-    document.getElementById("Total2").innerHTML=aux;
+        document.getElementById("Total2").innerHTML=aux;
+        document.getElementById("TotalElementos").innerHTML=`(${acumulador.length})`;
+        localStorage.setItem('Carrito',JSON.stringify(acumulador))
+    }
+    else{
+        localStorage.removeItem('Carrito')
+    }   
 }
-Tarjetas = new Tarjeta(Imagenes, Titulos, Descripciones);
-Tarjetas.Mostrar();
-$(document).ready(function () {
-    console.log("Hola");
-    
+
+$("document").ready(function(){
+    $.get("https://api.mercadolibre.com/sites/MCO/search?category=MCO180800",
+    function(data, status){
+        for(let i=0;i<data.results.length;i++){
+        Imagenes.push(data.results[i].thumbnail);
+        Titulos.push(data.results[i].title)
+        }
+        console.log(Imagenes)
+        Tarjetas = new Tarjeta(Imagenes, Titulos, Descripciones);
+        Tarjetas.Mostrar();
+    })
 })
 
-
+$("#MostrarCarritoTwo").hover(function(){
+    $(".Vertical-Transition").css("height","180px")
+},function(){
+    $(".Vertical-Transition").css("height","32px")
+});
 
 
 
