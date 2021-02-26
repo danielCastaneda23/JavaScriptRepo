@@ -17,6 +17,10 @@
     border: 2px solid;
     border-color: #3F5259; }
 
+.Fondo-products {
+  background: url(../images/FondoProducts.jpg);
+  background-size: 100%; }
+
 .Fondo-commerce {
   background: url(../images/FondoCommerce.jpg);
   background-size: 100%; }
