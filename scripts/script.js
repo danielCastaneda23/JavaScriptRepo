@@ -51,7 +51,6 @@ class Tarjeta {
     }
     EliminarDelCarrito(posicion,tamaño){
         let aux=` `;
-        console.log(posicion, tamaño);
         acumulador.splice(posicion,1);
         if(acumulador.length<=12){
             aux=`<div class="col-12 text-right pr-5 mr-5 h5"> Numero De Elementos En Carrito: ${(acumulador.length)} </div>`
@@ -63,7 +62,7 @@ class Tarjeta {
                 </div>
                 <div class="row mx-0 pl-2">
                 <button type="button" class="btn btn-link py-0 my-0 px-0 text-dark" onclick="Tarjetas.EliminarDelCarrito(${i},${acumulador.length})">Eliminar</button>
-                <button type="button" class="btn btn-link py-0 my-0 px-2 text-dark onclick="ShowProducto(${i})">Ver</button>
+                <a href="producto.html"><button type="button" class="btn btn-link py-0 my-0 px-2 text-dark" onclick="ShowProducto(${i})" >Ver</button></a>
                 </div>
             </div>
             `
@@ -74,7 +73,8 @@ class Tarjeta {
         }
         else{
             localStorage.removeItem('Carrito')
-        }   
+        }
+        console.log(acumulador)
     }
 }
 const Imagenes = ["../images/CardImages/Imagen8.JPG", "../images/CardImages/Imagen9.JPG", "../images/CardImages/Imagen10.JPG", "../images/CardImages/Imagen11.JPG", "../images/CardImages/Imagen12.JPG", "../images/CardImages/Imagen13.JPG", "../images/CardImages/Imagen14.JPG", "../images/CardImages/Imagen15.JPG", "../images/CardImages/Imagen16.JPG", "../images/CardImages/Imagen17.JPG"];
@@ -125,7 +125,6 @@ $("document").ready(function(){
         Imagenes.push(data.results[i].thumbnail);
         Titulos.push(data.results[i].title)
         }
-        console.log(Imagenes)
         Tarjetas = new Tarjeta(Imagenes, Titulos, Descripciones);
         Tarjetas.Mostrar();
     })
