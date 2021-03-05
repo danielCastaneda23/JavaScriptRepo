@@ -14,7 +14,8 @@ class Tarjeta {
                     <div class="card-body">
                         <h5 class="card-title">${this.Titulo[i]}</h5>
                         <p class="card-text h6">${this.Descripcion[i]}</p>
-                        <button type="button" class="btn btn-dark mt-2" onclick="Tarjetas.MostrarCarrito('${this.Imagen[i]}')">Agregar Carrito</button>
+                        <button type="button" class="btn btn-dark mt-2" onclick="Tarjetas.MostrarCarrito('${this.Imagen[i]}','${this.Titulo[i]}')">Agregar Carrito</button>
+                        <a href="producto.html"><button type="button" class="btn btn-link mt-2 mx-3 text-dark" onclick="ShowProductoSinCarrito('${this.Imagen[i]}','${this.Titulo[i]}')" >Ver</button></a>
                     </div>
                 </div>
             </div>
@@ -22,9 +23,10 @@ class Tarjeta {
         }
         document.getElementById("Total").innerHTML = Contador;
     }
-    MostrarCarrito(ImagenParaCarro){
+    MostrarCarrito(ImagenParaCarro,AcumuladorTexto){
         let aux=``;
         acumulador.push(ImagenParaCarro);
+        acumuladorDeTexto.push(AcumuladorTexto);
         if(acumulador.length<=12){
             aux=`<div class="col-12 text-right pr-5 mr-5 h5"> Numero De Elementos En Carrito: ${(acumulador.length)} </div>`
             for(let i=0;i<acumulador.length;i++){
@@ -34,7 +36,7 @@ class Tarjeta {
                     <img src="${acumulador[i]}" alt=":)" width="122px" height="120px" class="px-1"style="border-radius: 10%; " >
                 </div>
                 <div class="row mx-0 pl-2">
-                <button type="button" class="btn btn-link py-0 my-0 px-0 text-dark" onclick="Tarjetas.EliminarDelCarrito(${i},${acumulador.length})">Eliminar</button>
+                <button type="button" class="btn btn-link py-0 my-0 px-0 text-dark" onclick="Tarjetas.EliminarDelCarrito(${i})">Eliminar</button>
                 <a href="producto.html"><button type="button" class="btn btn-link py-0 my-0 px-2 text-dark" onclick="ShowProducto(${i})" >Ver</button></a>
                 </div>
             </div>
@@ -42,16 +44,18 @@ class Tarjeta {
             }
             document.getElementById("Total2").innerHTML=aux;
             document.getElementById("TotalElementos").innerHTML=`(${acumulador.length})`;
-            localStorage.setItem('Carrito',JSON.stringify(acumulador))
+            localStorage.setItem('Carrito',JSON.stringify(acumulador));
+            localStorage.setItem('Texto',JSON.stringify(acumuladorDeTexto));
         }
         else{
             localStorage.removeItem('Carrito')
         }
         console.log(acumulador);
     }
-    EliminarDelCarrito(posicion,tamaño){
+    EliminarDelCarrito(posicion){
         let aux=` `;
         acumulador.splice(posicion,1);
+        acumuladorDeTexto.splice(posicion,1);
         if(acumulador.length<=12){
             aux=`<div class="col-12 text-right pr-5 mr-5 h5"> Numero De Elementos En Carrito: ${(acumulador.length)} </div>`
             for(let i=0;i<acumulador.length;i++){
@@ -61,7 +65,7 @@ class Tarjeta {
                     <img src="${acumulador[i]}" alt=":)" width="122px" height="120px" class="px-1"style="border-radius: 10%; " >
                 </div>
                 <div class="row mx-0 pl-2">
-                <button type="button" class="btn btn-link py-0 my-0 px-0 text-dark" onclick="Tarjetas.EliminarDelCarrito(${i},${acumulador.length})">Eliminar</button>
+                <button type="button" class="btn btn-link py-0 my-0 px-0 text-dark" onclick="Tarjetas.EliminarDelCarrito(${i})">Eliminar</button>
                 <a href="producto.html"><button type="button" class="btn btn-link py-0 my-0 px-2 text-dark" onclick="ShowProducto(${i})" >Ver</button></a>
                 </div>
             </div>
@@ -70,6 +74,7 @@ class Tarjeta {
             document.getElementById("Total2").innerHTML=aux;
             document.getElementById("TotalElementos").innerHTML=`(${acumulador.length})`;
             localStorage.setItem('Carrito',JSON.stringify(acumulador))
+            localStorage.setItem('Texto',JSON.stringify(acumuladorDeTexto));
         }
         else{
             localStorage.removeItem('Carrito')
@@ -77,9 +82,9 @@ class Tarjeta {
         console.log(acumulador)
     }
 }
-const Imagenes = ["../images/CardImages/Imagen8.JPG", "../images/CardImages/Imagen9.JPG", "../images/CardImages/Imagen10.JPG", "../images/CardImages/Imagen11.JPG", "../images/CardImages/Imagen12.JPG", "../images/CardImages/Imagen13.JPG", "../images/CardImages/Imagen14.JPG", "../images/CardImages/Imagen15.JPG", "../images/CardImages/Imagen16.JPG", "../images/CardImages/Imagen17.JPG"];
-const Titulos = ["CAMA HOSPITALARIA TIPOA", "CAMA HOSPITALARIA TIPOB", "CAMA HOSPITALARIA TIPOC", "CAMA HOSPITALARIA TIPOD", "CAMA HOSPITALARIA TIPOE", "CAMA HOSPITALARIA TIPOF", "CAMA HOSPITALARIA TIPOG", "SILLA DE RUEDAS TIPO A", "SILLA DE RUEDAS TIPO A", "SILLA DE RUEDAS TIPO A"];
-const Descripciones = ["Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  "
+let Imagenes = ["../images/CardImages/Imagen8.JPG", "../images/CardImages/Imagen9.JPG", "../images/CardImages/Imagen10.JPG", "../images/CardImages/Imagen11.JPG", "../images/CardImages/Imagen12.JPG", "../images/CardImages/Imagen13.JPG", "../images/CardImages/Imagen14.JPG", "../images/CardImages/Imagen15.JPG", "../images/CardImages/Imagen16.JPG", "../images/CardImages/Imagen17.JPG"];
+let Titulos = ["CAMA HOSPITALARIA TIPOA", "CAMA HOSPITALARIA TIPOB", "CAMA HOSPITALARIA TIPOC", "CAMA HOSPITALARIA TIPOD", "CAMA HOSPITALARIA TIPOE", "CAMA HOSPITALARIA TIPOF", "CAMA HOSPITALARIA TIPOG", "SILLA DE RUEDAS TIPO A", "SILLA DE RUEDAS TIPO A", "SILLA DE RUEDAS TIPO A"];
+let Descripciones = ["Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  "
     , "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
     "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
     "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
@@ -90,11 +95,14 @@ const Descripciones = ["Lorem ipsum dolor, sit amet consectetur adipisicing elit
     "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  ",
     "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus similique est, eaque  "];
 let acumulador=[];
+let acumuladorDeTexto=[];
 let datos=[];
 
 $("document").ready(function(){
     if (localStorage.getItem('Carrito')!=null){
         acumulador=JSON.parse(localStorage.getItem('Carrito'));
+        acumuladorDeTexto=JSON.parse(localStorage.getItem('Texto'));
+        console.log(acumuladorDeTexto)
         aux=`<div class="col-12 text-right pr-5 mr-5 h5"> Numero De Elementos En Carrito: ${(acumulador.length)} </div>`;
         for(let i=0;i<acumulador.length;i++){
             aux+=`
@@ -103,11 +111,11 @@ $("document").ready(function(){
                     <img src="${acumulador[i]}" alt=":)" width="122px" height="120px" class="px-1"style="border-radius: 10%; " >
                 </div>
                 <div class="row mx-0 pl-2">
-                <button type="button" class="btn btn-link py-0 my-0 px-0 text-dark" onclick="Tarjetas.EliminarDelCarrito(${i},${acumulador.length})">Eliminar</button>
+                <button type="button" class="btn btn-link py-0 my-0 px-0 text-dark" onclick="Tarjetas.EliminarDelCarrito(${i})">Eliminar</button>
                 <a href="producto.html"><button type="button" class="btn btn-link py-0 my-0 px-2 text-dark" onclick="ShowProducto(${i})">Ver</button></a>
                 </div>
             </div>
-            
+
             `
         }
         document.getElementById("Total2").innerHTML=aux;
@@ -132,4 +140,10 @@ $("document").ready(function(){
 
 function ShowProducto(posicion){
     localStorage.setItem('Position',JSON.stringify(posicion));
+    localStorage.setItem('Texto',JSON.stringify(acumuladorDeTexto));
+}
+
+function ShowProductoSinCarrito(Imagen,Texto){
+    localStorage.setItem('Imagen',JSON.stringify(Imagen));
+    localStorage.setItem('Texto2',JSON.stringify(Texto));
 }
