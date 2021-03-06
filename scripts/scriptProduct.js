@@ -1,14 +1,20 @@
 acumulador=[];
 textos=[];
 posicion=0;
-
+acumuladorDePrecio=[];
 if (localStorage.getItem('Carrito')!=null){
     acumulador = JSON.parse(localStorage.getItem('Carrito'));
     textos = JSON.parse(localStorage.getItem('Texto'));
     posicion = JSON.parse(localStorage.getItem('Position'));
-}
+    acumuladorDePrecio=JSON.parse(localStorage.getItem('Price'));
 
+}
+let PrecioTotal=0;
 aux = `<div class="col-12 text-right pr-5 mr-5 h5"> Numero De Elementos En Carrito: ${(acumulador.length)} </div>`;
+for(let j=0;j<acumulador.length;j++){
+    PrecioTotal+=Number(acumuladorDePrecio[j]);
+    console.log(PrecioTotal);
+}
 for (let i = 0; i < acumulador.length; i++) {
     aux += `
                     <div class="col-1 px-0">
@@ -24,10 +30,13 @@ for (let i = 0; i < acumulador.length; i++) {
 }
 document.getElementById("Total2").innerHTML = aux;
 document.getElementById("TotalElementos").innerHTML = `(${acumulador.length})`;
+document.getElementById("ValorAPagar").innerHTML=`Valor A Pagar: $${PrecioTotal}`;
+PrecioTotal=0;
 
 if (localStorage.getItem('Imagen') != null) {
     Titulo = JSON.parse(localStorage.getItem('Texto2'));
     Imagen = JSON.parse(localStorage.getItem('Imagen'));
+    PrecioArticulo = JSON.parse(localStorage.getItem('PriceElement'));
     document.getElementsByClassName("ShowProduct")[0].innerHTML = `
             <div class="col-7 px-0 " style="margin-top: 8%;">
                 <img src="${Imagen}" alt=":)" width="600px" height="500px" style="border:0px solid; border-radius: 20%;">
@@ -39,8 +48,8 @@ if (localStorage.getItem('Imagen') != null) {
                             <h3 class="card-title">${Titulo}</h3>
                             <p class="h5 card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima consequuntur cupiditate odio quae? Deserunt facere quae explicabo ratione similique repudiandae cupiditate totam laudantium quam aspernatur. Excepturi obcaecati praesentium facilis. Nam.
                             </p>
-                            <button type="button" class="btn btn-link mt-2 mx-3 " onclick="AgregarCarro('${Imagen}','${Titulo}')" >Agregar al carrito</button>
-                            <a href="#" class="btn btn-primary">Finalizar Compra</a>
+                            <button type="button" class="btn btn-link mt-2 mx-3 " onclick="AgregarCarro('${Imagen}','${Titulo}',${PrecioArticulo})" >Agregar al carrito</button>
+                            <a href="finalizarcompra.html"><button type="button" class="btn btn-link mt-2 mx-3" >Finalizar Compra</button></a>
                         </div>
                     </div>
                 </div>
@@ -59,8 +68,8 @@ else {
                         <h3 class="card-title">${textos[posicion]}</h3>
                         <p class="h5 card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima consequuntur cupiditate odio quae? Deserunt facere quae explicabo ratione similique repudiandae cupiditate totam laudantium quam aspernatur. Excepturi obcaecati praesentium facilis. Nam.
                         </p>
-                        <button type="button" class="btn btn-link mt-2 mx-3 " onclick="AgregarCarro('${acumulador[posicion]}','${textos[posicion]}')" >Agregar al carrito</button>
-                        <a href="#" class="btn btn-primary">Finalizar Compra</a>
+                        <button type="button" class="btn btn-link mt-2 mx-3 " onclick="AgregarCarro('${acumulador[posicion]}','${textos[posicion]}',${acumuladorDePrecio[posicion]})" >Agregar al carrito</button>
+                        <a href="finalizarcompra.html"><button type="button" class="btn btn-link mt-2 mx-3" >Finalizar Compra</button></a>
                     </div>
                 </div>
             </div>
@@ -77,14 +86,21 @@ $("#MostrarCarritoTwo").hover(function () {
 window.onbeforeunload = function (e) {
     localStorage.removeItem('Texto2');
     localStorage.removeItem('Imagen');
+    localStorage.removeItem('PriceElement');
 };
 
-function AgregarCarro(ImagenParaCarro,AcumuladorTexto){
+function AgregarCarro(ImagenParaCarro,AcumuladorTexto,PrecioArticulo){
     let aux=``;
+    let PrecioTotal=0;
     acumulador.push(ImagenParaCarro);
     textos.push(AcumuladorTexto);
+    acumuladorDePrecio.push(PrecioArticulo);
     if(acumulador.length<=12){
         aux=`<div class="col-12 text-right pr-5 mr-5 h5"> Numero De Elementos En Carrito: ${(acumulador.length)} </div>`
+        for(let j=0;j<acumulador.length;j++){
+            PrecioTotal+=Number(acumuladorDePrecio[j]);
+            console.log(PrecioTotal);
+        }
         for(let i=0;i<acumulador.length;i++){
         aux+=`
         <div class="col-1 px-0">
@@ -100,20 +116,29 @@ function AgregarCarro(ImagenParaCarro,AcumuladorTexto){
         }
         document.getElementById("Total2").innerHTML=aux;
         document.getElementById("TotalElementos").innerHTML=`(${acumulador.length})`;
+        document.getElementById("ValorAPagar").innerHTML=`Valor A Pagar: $${PrecioTotal}`;
         localStorage.setItem('Carrito',JSON.stringify(acumulador));
         localStorage.setItem('Texto',JSON.stringify(textos));
+        localStorage.setItem('Price',JSON.stringify(acumuladorDePrecio));
     }
     else{
         localStorage.removeItem('Carrito')
     }
     console.log(acumulador);
+    PrecioTotal=0;
 }
 function EliminarDelCarrito(posicion){
     let aux=` `;
+    let PrecioTotal=0;
     acumulador.splice(posicion,1);
     textos.splice(posicion,1);
+    acumuladorDePrecio.splice(posicion,1);
     if(acumulador.length<=12){
         aux=`<div class="col-12 text-right pr-5 mr-5 h5"> Numero De Elementos En Carrito: ${(acumulador.length)} </div>`
+        for(let j=0;j<acumulador.length;j++){
+            PrecioTotal+=Number(acumuladorDePrecio[j]);
+            console.log(PrecioTotal);
+        }
         for(let i=0;i<acumulador.length;i++){
         aux+=`
         <div class="col-1 px-0">
@@ -129,13 +154,16 @@ function EliminarDelCarrito(posicion){
         }
         document.getElementById("Total2").innerHTML=aux;
         document.getElementById("TotalElementos").innerHTML=`(${acumulador.length})`;
+        document.getElementById("ValorAPagar").innerHTML=`Valor A Pagar: $${PrecioTotal}`;
         localStorage.setItem('Carrito',JSON.stringify(acumulador))
         localStorage.setItem('Texto',JSON.stringify(textos));
+        localStorage.setItem('Price',JSON.stringify(acumuladorDePrecio));
     }
     else{
         localStorage.removeItem('Carrito')
     }
     console.log(acumulador)
+    PrecioTotal=0;
 }
 function ShowProducto(posicion){
     localStorage.setItem('Position',JSON.stringify(posicion));
